@@ -43,6 +43,16 @@ dotnet build
 dotnet run
 ```
 
+### Quick Install (Linux/macOS)
+
+If you just want to install the pre-compiled application on macOS or Linux without building from source, run the following command in your terminal:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/ratchanonth60/MKS_V2/main/install.sh | bash
+```
+
+This will automatically download the correct binary for your OS and architecture and place it in `~/.local/bin`.
+
 ## 🖥️ User Interface Workspaces
 
 The application is structured into the following key areas:
