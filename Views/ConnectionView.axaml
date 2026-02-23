@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MKS_V2.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="150"
+             x:Class="MKS_V2.Views.ConnectionView"
+             x:DataType="vm:ConnectionViewModel">
+    
+    <Border Padding="10" BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+        <StackPanel Spacing="10">
+            <TextBlock Text="Connection Settings" FontWeight="Bold" FontSize="16"/>
+            
+            <Grid ColumnDefinitions="Auto, *, Auto, *" RowDefinitions="Auto, Auto" VerticalAlignment="Center">
+                
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Port:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AvailablePorts}" SelectedItem="{Binding SelectedPort}" IsEnabled="{Binding IsNotConnected}" Margin="0,0,10,5" HorizontalAlignment="Stretch"/>
+                
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Baud Rate:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <ComboBox Grid.Row="0" Grid.Column="3" ItemsSource="{Binding AvailableBaudRates}" SelectedItem="{Binding BaudRate}" IsEnabled="{Binding IsNotConnected}" Margin="0,0,0,5" HorizontalAlignment="Stretch"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Address (Hex):" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceAddressHex}" IsEnabled="{Binding IsNotConnected}" Margin="0,0,10,0"/>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                <Button Content="Refresh" Command="{Binding RefreshPortsCommand}" IsEnabled="{Binding IsNotConnected}"/>
+                <Button Content="Connect" Command="{Binding ConnectCommand}" IsEnabled="{Binding IsNotConnected}"/>
+                <Button Content="Disconnect" Command="{Binding DisconnectCommand}" IsEnabled="{Binding IsConnected}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

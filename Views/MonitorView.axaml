@@ -1,0 +1,64 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MKS_V2.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="500"
+             x:Class="MKS_V2.Views.MonitorView"
+             x:DataType="vm:MonitorViewModel">
+
+    <ScrollViewer>
+        <StackPanel Spacing="10" Margin="10">
+            <TextBlock Text="Motor Status Monitor" FontWeight="Bold" FontSize="16"/>
+
+            <Border Padding="10" BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+                <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="0,5,0,0">
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Encoder Carry:" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding EncoderCarry}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Accumulated Pulses:" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding AccumulatedPulses}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Raw Encoder:" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding RawAccumulatedEncoder}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Pos/Angle Error:" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding PositionAngleError}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Enable State:" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding EnableState}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Auto Zero Status:" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding AutoZeroStatus}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Stall Flag:" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding StallFlag}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="IO Port State:" Margin="0,0,10,5"/>
+                    <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding IoPortState}" FontWeight="SemiBold" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="8" Grid.Column="0" Text="Hardware Version:" Margin="0,0,10,0"/>
+                    <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding HardwareVersion}" FontWeight="SemiBold" Margin="0,0,0,0"/>
+
+                </Grid>
+            </Border>
+
+            <TextBlock Text="System Message:" FontWeight="SemiBold" Margin="0,10,0,0"/>
+            <TextBlock Text="{Binding StatusMessage}" Foreground="DarkBlue" TextWrapping="Wrap" />
+
+            <!-- Control Buttons -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" Margin="0,15,0,0">
+                <Button Grid.Row="0" Grid.Column="0" Content="Enable Motor" Command="{Binding EnableMotorCommand}" HorizontalAlignment="Stretch" Margin="0,0,5,5"/>
+                <Button Grid.Row="0" Grid.Column="1" Content="Disable Motor" Command="{Binding DisableMotorCommand}" HorizontalAlignment="Stretch" Margin="5,0,0,5"/>
+
+                <Button Grid.Row="1" Grid.Column="0" Content="Query All Status" Command="{Binding QueryAllStatusCommand}" HorizontalAlignment="Stretch" Margin="0,0,5,5"/>
+                <Button Grid.Row="1" Grid.Column="1" Content="Clear Stall Flag" Command="{Binding ClearStallFlagCommand}" HorizontalAlignment="Stretch" Margin="5,0,0,5"/>
+
+                <Button Grid.Row="2" Grid.Column="0" Content="Reset Motor" Command="{Binding ResetMotorCommand}" HorizontalAlignment="Stretch" Margin="0,0,5,0"/>
+                <Button Grid.Row="2" Grid.Column="1" Content="Factory Reset" Command="{Binding RestoreFactoryConfigCommand}" HorizontalAlignment="Stretch" Margin="5,0,0,0"/>
+            </Grid>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

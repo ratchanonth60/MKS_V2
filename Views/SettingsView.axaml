@@ -1,0 +1,75 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MKS_V2.ViewModels"
+             xmlns:core="using:MKS_V2.Core"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="400"
+             x:Class="MKS_V2.Views.SettingsView"
+             x:DataType="vm:SettingsViewModel">
+
+    <ScrollViewer>
+        <Border Padding="10" BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+            <StackPanel Spacing="10">
+                <TextBlock Text="System Parameters" FontWeight="Bold" FontSize="16"/>
+
+                <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="0,10,0,0">
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Subdivision:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AvailableSubdivisions}" SelectedItem="{Binding SelectedSubdivision}" HorizontalAlignment="Stretch" Margin="0,0,10,5"/>
+                    <Button Grid.Row="0" Grid.Column="2" Content="Apply" Command="{Binding ApplySubdivisionCommand}" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Running Current (mA):" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <NumericUpDown Grid.Row="1" Grid.Column="1" Minimum="0" Maximum="5200" Value="{Binding RunningCurrent}" HorizontalAlignment="Stretch" Margin="0,0,10,5"/>
+                    <Button Grid.Row="1" Grid.Column="2" Content="Apply" Command="{Binding ApplyRunningCurrentCommand}" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Holding Current (%):" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" SelectedIndex="{Binding HoldingCurrentIndex}" HorizontalAlignment="Stretch" Margin="0,0,10,5">
+                        <ComboBoxItem>10%</ComboBoxItem>
+                        <ComboBoxItem>20%</ComboBoxItem>
+                        <ComboBoxItem>30%</ComboBoxItem>
+                        <ComboBoxItem>40%</ComboBoxItem>
+                        <ComboBoxItem>50%</ComboBoxItem>
+                        <ComboBoxItem>60%</ComboBoxItem>
+                        <ComboBoxItem>70%</ComboBoxItem>
+                        <ComboBoxItem>80%</ComboBoxItem>
+                        <ComboBoxItem>90%</ComboBoxItem>
+                    </ComboBox>
+                    <Button Grid.Row="2" Grid.Column="2" Content="Apply" Command="{Binding ApplyHoldingCurrentCommand}" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Baud Rate:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <ComboBox Grid.Row="3" Grid.Column="1" SelectedIndex="{Binding BaudRate}" HorizontalAlignment="Stretch" Margin="0,0,10,5">
+                        <ComboBoxItem>9600</ComboBoxItem>
+                        <ComboBoxItem>19200</ComboBoxItem>
+                        <ComboBoxItem>25000</ComboBoxItem>
+                        <ComboBoxItem>38400</ComboBoxItem>
+                        <ComboBoxItem>57600</ComboBoxItem>
+                        <ComboBoxItem>115200</ComboBoxItem>
+                        <ComboBoxItem>256000</ComboBoxItem>
+                    </ComboBox>
+                    <Button Grid.Row="3" Grid.Column="2" Content="Apply" Command="{Binding ApplyBaudRateCommand}" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Comm Address:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <NumericUpDown Grid.Row="4" Grid.Column="1" Minimum="1" Maximum="255" Value="{Binding CommAddress}" HorizontalAlignment="Stretch" Margin="0,0,10,5"/>
+                    <Button Grid.Row="4" Grid.Column="2" Content="Apply" Command="{Binding ApplyCommAddressCommand}" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Motor Direction:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <ComboBox Grid.Row="5" Grid.Column="1" SelectedIndex="{Binding MotorDirection}" HorizontalAlignment="Stretch" Margin="0,0,10,5">
+                        <ComboBoxItem>Reverse (CW)</ComboBoxItem>
+                        <ComboBoxItem>Forward (CCW)</ComboBoxItem>
+                    </ComboBox>
+                    <Button Grid.Row="5" Grid.Column="2" Content="Apply" Command="{Binding ApplyMotorDirectionCommand}" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Start Accel (0-255):" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <NumericUpDown Grid.Row="6" Grid.Column="1" Minimum="0" Maximum="255" Value="{Binding StartAcceleration}" HorizontalAlignment="Stretch" Margin="0,0,10,5"/>
+                    <Button Grid.Row="6" Grid.Column="2" Content="Apply" Command="{Binding ApplyStartAccelerationCommand}" Margin="0,0,0,5"/>
+
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="Stop Accel (0-255):" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <NumericUpDown Grid.Row="7" Grid.Column="1" Minimum="0" Maximum="255" Value="{Binding StopAcceleration}" HorizontalAlignment="Stretch" Margin="0,0,10,0"/>
+                    <Button Grid.Row="7" Grid.Column="2" Content="Apply" Command="{Binding ApplyStopAccelerationCommand}" Margin="0,0,0,0"/>
+
+                </Grid>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+</UserControl>

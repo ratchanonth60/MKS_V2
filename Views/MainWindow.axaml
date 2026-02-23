@@ -1,0 +1,73 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:MKS_V2.ViewModels"
+        xmlns:v="using:MKS_V2.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
+        x:Class="MKS_V2.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="MKS ServoD Control V2">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid Background="#ffffffff">
+        <Grid RowDefinitions="Auto, *" Margin="20">
+            <!-- Header -->
+            <Border Grid.Row="0" Margin="0,0,0,20" Padding="15" Background="#FFFFFF" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="8" BoxShadow="0 4 15 0 #0D000000">
+                <TextBlock Text="MKS ServoD Control Panel" FontSize="26" FontWeight="Bold" Foreground="#111827" HorizontalAlignment="Center"/>
+            </Border>
+
+            <!-- Main Content Area -->
+            <Grid Grid.Row="1" ColumnDefinitions="350, *" Margin="0" ColumnSpacing="20">
+                
+                <!-- Left Column (Fixed Width: Connection & Monitor) -->
+                <Grid Grid.Column="0" RowDefinitions="Auto,*" RowSpacing="20">
+                    <!-- Connection -->
+                    <Border Grid.Row="0" Background="#FFFFFF" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="8" Padding="15" BoxShadow="0 4 15 0 #0D000000">
+                        <v:ConnectionView DataContext="{Binding Connection}"/>
+                    </Border>
+                    
+                    <!-- Monitor -->
+                    <Border Grid.Row="1" Background="#FFFFFF" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="8" Padding="15" BoxShadow="0 4 15 0 #0D000000">
+                        <v:MonitorView DataContext="{Binding Monitor}"/>
+                    </Border>
+                </Grid>
+
+                <!-- Right Column (TabControl) -->
+                <Border Grid.Column="1" Background="#FFFFFF" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="8" Padding="10" BoxShadow="0 4 15 0 #0D000000">
+                    <TabControl>
+                        
+                        <!-- Tab 1: Basic Control -->
+                        <TabItem Header="Basic Control" FontSize="16" FontWeight="SemiBold">
+                            <ScrollViewer Margin="0,15,0,0">
+                                <StackPanel Spacing="20">
+                                    <v:SpeedControlView DataContext="{Binding SpeedControl}"/>
+                                    <v:PositionControlView DataContext="{Binding PositionControl}"/>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </TabItem>
+
+                        <!-- Tab 2: System Parameters -->
+                        <TabItem Header="Parameters" FontSize="16" FontWeight="SemiBold">
+                            <ScrollViewer Margin="0,15,0,0">
+                                <v:SettingsView DataContext="{Binding Settings}"/>
+                            </ScrollViewer>
+                        </TabItem>
+
+                        <!-- Tab 3: Homing & Limits -->
+                        <TabItem Header="Homing &amp; Limits" FontSize="16" FontWeight="SemiBold">
+                            <ScrollViewer Margin="0,15,0,0">
+                                <v:LimitSettingsView DataContext="{Binding LimitSettings}"/>
+                            </ScrollViewer>
+                        </TabItem>
+
+                    </TabControl>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

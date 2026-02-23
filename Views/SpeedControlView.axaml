@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MKS_V2.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="200"
+             x:Class="MKS_V2.Views.SpeedControlView"
+             x:DataType="vm:SpeedControlViewModel">
+    
+    <Border Padding="10" BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+        <StackPanel Spacing="10">
+            <TextBlock Text="Speed Mode" FontWeight="Bold" FontSize="16"/>
+
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto" Margin="0,10,0,0">
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Speed (1-3000):" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <NumericUpDown Grid.Row="0" Grid.Column="1" Value="{Binding Speed}" Minimum="1" Maximum="3000" Increment="100" Margin="0,0,0,10"/>
+                
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Acceleration:" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <NumericUpDown Grid.Row="1" Grid.Column="1" Value="{Binding Acceleration}" Minimum="0" Maximum="255" Margin="0,0,0,10"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Direction:" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Spacing="20">
+                    <RadioButton Content="Forward" IsChecked="{Binding IsForward}" GroupName="SpeedDir"/>
+                    <RadioButton Content="Reverse" IsChecked="{Binding !IsForward}" GroupName="SpeedDir"/>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
+                <Button Content="Start" Command="{Binding StartCommand}" Width="100" HorizontalContentAlignment="Center"/>
+                <Button Content="Stop" Command="{Binding StopCommand}" Width="100" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

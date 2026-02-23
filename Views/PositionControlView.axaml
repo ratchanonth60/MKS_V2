@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MKS_V2.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
+             x:Class="MKS_V2.Views.PositionControlView"
+             x:DataType="vm:PositionControlViewModel">
+
+    <Border Padding="10" BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+        <StackPanel Spacing="10">
+            <TextBlock Text="Position Mode" FontWeight="Bold" FontSize="16"/>
+
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto" Margin="0,10,0,0">
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Mode:" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Modes}" SelectedItem="{Binding SelectedMode}" Margin="0,0,0,10" HorizontalAlignment="Stretch"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Value (Pulses/Axis):" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <NumericUpDown Grid.Row="1" Grid.Column="1" Value="{Binding TargetValue}" Margin="0,0,0,10"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Speed (1-3000):" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <NumericUpDown Grid.Row="2" Grid.Column="1" Value="{Binding Speed}" Minimum="1" Maximum="3000" Increment="100" Margin="0,0,0,10"/>
+                
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Acceleration:" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <NumericUpDown Grid.Row="3" Grid.Column="1" Value="{Binding Acceleration}" Minimum="0" Maximum="255" Margin="0,0,0,10"/>
+
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Direction:" VerticalAlignment="Center" Margin="0,0,10,10"/>
+                <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Spacing="20">
+                    <RadioButton Content="Forward" IsChecked="{Binding IsForward}" GroupName="PosDir"/>
+                    <RadioButton Content="Reverse" IsChecked="{Binding !IsForward}" GroupName="PosDir"/>
+                </StackPanel>
+            </Grid>
+
+            <Button Content="Move" Command="{Binding StartCommand}" Width="100" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+        </StackPanel>
+    </Border>
+</UserControl>
